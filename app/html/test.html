@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-min.js"></script>
+</head>
+<body>
+    <div id="t" contenteditable="true"></div>
+    <textarea id="txt" rows="15" cols="70">There is some text here.</textarea>
+<input type="button" id="Insert" value="Insert" />
+<select id="select">
+
+    <option value="opt1">opt1</option>
+    <option value="opt2">opt2</option>
+    <option value="opt3">opt3</option>
+</select>
+<script>
+    jQuery("#t").on('input', function(){
+        document.getElementById("t").innerHTML = jQuery("#select");
+    });
+    $("#Insert").on('click', function() {
+        var $txt = $("#txt");
+        // $txt.html(this);
+        var caretPos = $txt[0].selectionStart;
+        var textAreaTxt = $txt.val();
+        var txtToAdd = "#" + $("#select").val();
+        $txt.val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
+    });
+</script>
+</body>
+</html>
